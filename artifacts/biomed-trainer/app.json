@@ -2,7 +2,7 @@
   "expo": {
     "name": "BioMed Trainer",
     "slug": "biomed-trainer",
-    "owner": "dilet",
+    "owner": "codelets-team",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
