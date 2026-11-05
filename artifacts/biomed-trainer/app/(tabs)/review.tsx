@@ -20,7 +20,7 @@ export default function ReviewScreen() {
   return (
     <ScrollView style={[styles.screen, { backgroundColor: colors.background }]} contentContainerStyle={{ paddingTop: topInset, paddingBottom: insets.bottom + 112 }} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
-        <View>
+        <View style={{ flex: 1, paddingRight: 12 }}>
           <Text style={[styles.kicker, { color: colors.primary }]}>{t('review.kicker')}</Text>
           <Text style={[styles.title, { color: colors.foreground }]}>{t('review.title')}</Text>
           <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>{t('review.subtitle')}</Text>
