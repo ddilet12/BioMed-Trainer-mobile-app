@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "biomed-trainer",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false
     },

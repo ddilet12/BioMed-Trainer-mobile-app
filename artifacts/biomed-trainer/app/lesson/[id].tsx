@@ -30,7 +30,8 @@ export default function LessonScreen() {
     if (selected === null) return;
     setChecked(true);
     Haptics.notificationAsync(selected === question.answer ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Error).catch(() => undefined);
-    if (selected === question.answer && step === lessonQuestions.length - 1) completeLesson(id ?? 'molecular-biology-dna');
+    // The lesson counts as completed once every question has been answered.
+    if (step === lessonQuestions.length - 1) completeLesson(id ?? 'molecular-biology-dna');
   };
   const next = () => {
     if (step < lessonQuestions.length - 1) {

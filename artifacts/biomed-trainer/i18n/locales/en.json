@@ -69,7 +69,7 @@
     "studentName": "My progress",
     "studentMeta": "Data is stored only on this device",
     "overallProgress": "Overall progress",
-    "topicsCompleted": "Topics completed",
+    "topicsCompleted": "Lessons completed",
     "preferences": "Preferences",
     "languageTitle": "Learning language",
     "languageSubtitle": "Choose your content language",
@@ -124,7 +124,7 @@
     "slide1Body": "Short theory, visual explanations and practice that help you remember what matters.",
     "slide2Kicker": "PRACTICE WITH PURPOSE",
     "slide2Title": "Turn difficult concepts into confident answers.",
-    "slide2Body": "Work through interactive questions and clinical cases, then understand every mistake.",
+    "slide2Body": "Work through interactive questions and understand every mistake.",
     "slide3Kicker": "KEEP YOUR MOMENTUM",
     "slide3Title": "A few minutes today goes a long way.",
     "slide3Body": "Your review queue keeps the right topics close, without grades or pressure."

@@ -52,7 +52,8 @@ function ClassicTabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.mutedForeground,
-        headerShown: true,
+        // Each tab screen renders its own title and handles the safe-area inset.
+        headerShown: false,
         tabBarStyle: {
           position: 'absolute',
           backgroundColor: isIOS ? 'transparent' : colors.background,
