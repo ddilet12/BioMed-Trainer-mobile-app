@@ -6,81 +6,78 @@
   },
   "home": {
     "eyebrow": "BIO • MED TRAINER",
-    "greeting": "Қайырлы таң, Амина",
-    "streakTitle": "{{count}} күн қатарынан",
-    "streakSubtitle": "Өз ырғағыңызды жалғастырыңыз",
+    "greeting": "Қош келдіңіз",
+    "streakTitle": "Сабақ сериясы: {{count}} күн",
+    "streakSubtitle": "Серияны жалғастыру үшін сабақ өтіңіз",
     "today": "БҮГІН",
     "studyPlanLabel": "СІЗДІҢ ОҚУ ЖОСПАРЫҢЫЗ",
     "studyPlanHeadline1": "Қысқа сабақтар.",
     "studyPlanHeadline2": "Нақты нәтиже.",
-    "studyPlanDetail": "Ұсынылған 24 тақырыптың {{count}}-ін аяқтадыңыз.",
+    "studyPlanDetail": "Аяқталған сабақтар: {{count}} / {{total}}.",
     "continueTitle": "Оқуды жалғастыру",
     "viewCourse": "КУРСҚА ӨТУ",
     "lessonKicker": "МОЛЕКУЛАЛЫҚ БИОЛОГИЯ · 12 МИН",
     "lessonTitle": "ДНҚ репликациясы",
     "lessonSubtitle": "Жетекші және кейін қалушы тізбектер",
     "exploreTitle": "Пәндерді зерттеу",
-    "total": "БАРЛЫҒЫ 7"
+    "total": "БАРЛЫҒЫ 7",
+    "comingSoon": "ЖАҚЫНДА"
   },
   "disciplines": {
-    "molecular": { "title": "Молекулалық биология", "subtitle": "ДНҚ, РНҚ және ген экспрессиясы" },
-    "genetics": { "title": "Медициналық генетика", "subtitle": "Тұқым қуалау және диагностика" },
-    "biomedicine": { "title": "Биомедицина", "subtitle": "Жасушалар, терапия және omics" },
-    "parasitology": { "title": "Паразитология", "subtitle": "Циклдер, иелер және алдын алу" },
-    "embryology": { "title": "Эмбриология", "subtitle": "Гаметадан мүшеге дейін" },
-    "ontogeny": { "title": "Онтогенез", "subtitle": "Өсу, қартаю және қалпына келу" },
-    "invasion": { "title": "Адам инвазиясы", "subtitle": "Паразит пен иенің байланысы" }
+    "molecular": {
+      "title": "Молекулалық биология",
+      "subtitle": "ДНҚ, РНҚ және ген экспрессиясы"
+    },
+    "genetics": {
+      "title": "Медициналық генетика",
+      "subtitle": "Тұқым қуалау және диагностика"
+    },
+    "biomedicine": {
+      "title": "Биомедицина",
+      "subtitle": "Жасушалар, терапия және omics"
+    },
+    "parasitology": {
+      "title": "Паразитология",
+      "subtitle": "Циклдер, иелер және алдын алу"
+    },
+    "embryology": {
+      "title": "Эмбриология",
+      "subtitle": "Гаметадан мүшеге дейін"
+    },
+    "ontogeny": {
+      "title": "Онтогенез",
+      "subtitle": "Өсу, қартаю және қалпына келу"
+    },
+    "invasion": {
+      "title": "Адам инвазиясы",
+      "subtitle": "Паразит пен иенің байланысы"
+    }
   },
   "review": {
     "kicker": "АҚЫЛДЫ ҚАЙТАЛАУ",
     "title": "Қайталау кезегі",
     "subtitle": "Білімді бекітетін қысқа қайталаулар.",
-    "summaryTitle": "2 тақырып дайын",
-    "summarySubtitle": "Бүгін шамамен 8 минут қажет",
+    "summaryTitle": "Өткенді қайталаңыз",
+    "summarySubtitle": "Күніне бірнеше минут есте сақтауға көмектеседі",
     "sectionTitle": "Бүгін ұсынамыз",
-    "dnaDetail": "Өткен жолы 2 сұрақтан қате кетті",
-    "geneDetail": "Жылдам қайталау уақыты келді",
+    "dnaDetail": "Өзіңізді тағы бір рет тексеріңіз",
     "tip": "Күн сайын аздап қайталау бір ұзақ сабақтан тиімдірек."
   },
   "profile": {
     "kicker": "СІЗДІҢ КЕҢІСТІГІҢІЗ",
     "title": "Профиль",
-    "studentName": "Амина Садыкова",
-    "studentMeta": "Медицина студенті · 2 курс",
+    "studentName": "Менің прогресім",
+    "studentMeta": "Деректер тек осы құрылғыда сақталады",
     "overallProgress": "Жалпы прогресс",
     "topicsCompleted": "Аяқталған тақырыптар",
-    "planKicker": "ТЕГІН ЖОСПАР",
-    "planTitle": "Барлық 7 пәнді ашыңыз",
-    "planSubtitle": "Шектеусіз жаттығулар мен клиникалық кейстерге өтіңіз.",
     "preferences": "Баптаулар",
     "languageTitle": "Оқу тілі",
     "languageSubtitle": "Оқу мазмұнының тілін таңдаңыз",
-    "savedTopics": "Сақталған тақырыптар",
-    "savedTopicsDetail": "Сіздің жеке жинағыңыз",
-    "subscription": "Жазылым",
-    "subscriptionDetail": "Жоспарды басқару",
     "help": "Көмек және кері байланыс",
-    "helpDetail": "Біз көмектесуге дайынбыз"
-  },
-  "subscription": {
-    "back": "Профильге оралу",
-    "kicker": "ҚОЛЖЕТІМДІЛІК ЖОСПАРЛАРЫ",
-    "title": "Сізге сай жоспарды таңдаңыз",
-    "subtitle": "BioMed Trainer интерактивті оқуы мен тренажерлеріне қол жеткізіңіз",
-    "periodLabel": "ТӨЛЕМ КЕЗЕҢІ",
-    "periodMonthly": "1 ай",
-    "periodSixMonths": "6 ай",
-    "periodYearly": "1 жыл",
-    "pricePeriod": "{{period}} үшін",
-    "singleTitle": "Бір пән",
-    "singleDescription": "Тек таңдалған пәнге қол жеткізу",
-    "allTitle": "Барлық 7 пән",
-    "allDescription": "BioMed Trainer-дің барлық жеті бағытына толық қол жеткізу",
-    "choosePlan": "Жоспарды таңдау",
-    "selected": "Таңдалды",
-    "selectionTitle": "Жоспар таңдалды",
-    "selectionMessage": "{{plan}} · {{period}}",
-    "demoNote": "Төлем әлі қосылмаған. Таңдау әзірше демо режимінде жұмыс істейді."
+    "contactDetail": "Әзірлеушіге жазу",
+    "privacy": "Құпиялылық саясаты",
+    "privacyDetail": "Қолданба деректерді қалай өңдейді",
+    "disclaimer": "BioMed Trainer — оқу қолданбасы. Материалдар білім беру мақсатында ұсынылады және медициналық кеңес, диагноз немесе емдеу ұсынысы болып табылмайды. Денсаулыққа қатысты сұрақтар бойынша дәрігерге жүгініңіз."
   },
   "languages": {
     "en": "English",
@@ -98,12 +95,10 @@
     "theoryVisual": "Теория және визуализация",
     "practiceSet": "Практикалық бөлім",
     "clinicalCase": "Клиникалық кейс",
-    "unlockTitle": "Толық курсты ашыңыз",
-    "unlockSubtitle": "Барлық тақырыптар, кейстер және жаттығулар.",
-    "pro": "PRO",
     "minutes": "{{count}} мин",
-    "hours": "2,5 сағ",
-    "complete": "{{percent}}% аяқталды"
+    "complete": "{{percent}}% аяқталды",
+    "comingSoon": "Жақында",
+    "totalTime": "≈ 1 сағ"
   },
   "lesson": {
     "interactivePractice": "ИНТЕРАКТИВТІ ПРАКТИКА",

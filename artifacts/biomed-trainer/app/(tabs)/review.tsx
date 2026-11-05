@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 const items = [
   { id: 'dna-review', lessonId: 'molecular-biology-dna', titleKey: 'home.lessonTitle', detailKey: 'review.dnaDetail', icon: 'activity' },
-  { id: 'gene-review', lessonId: 'molecular-biology-dna', titleKey: 'disciplines.molecular.title', detailKey: 'review.geneDetail', icon: 'git-branch' },
 ];
 
 export default function ReviewScreen() {
@@ -28,11 +27,11 @@ export default function ReviewScreen() {
         </View>
         <View style={[styles.streakBadge, { backgroundColor: colors.secondary }]}><Feather name="zap" size={15} color={colors.primary} /><Text style={[styles.streakText, { color: colors.primary }]}>{streak}</Text></View>
       </View>
-      <View style={[styles.summaryCard, { backgroundColor: colors.foreground }]}>
+      <Pressable onPress={() => router.push({ pathname: '/lesson/[id]', params: { id: items[0].lessonId } })} style={({ pressed }) => [styles.summaryCard, { backgroundColor: colors.foreground, opacity: pressed ? 0.88 : 1 }]}>
         <View style={[styles.summaryIcon, { backgroundColor: colors.primary }]}><Feather name="refresh-cw" size={18} color={colors.card} /></View>
         <View style={{ flex: 1 }}><Text style={styles.summaryTitle}>{t('review.summaryTitle')}</Text><Text style={styles.summarySub}>{t('review.summarySubtitle')}</Text></View>
         <Feather name="arrow-up-right" size={18} color="#BEE6C9" />
-      </View>
+      </Pressable>
       <Text style={[styles.sectionTitle, { color: colors.foreground }]}>{t('review.sectionTitle')}</Text>
       <View style={styles.list}>
         {items.map((item, index) => (

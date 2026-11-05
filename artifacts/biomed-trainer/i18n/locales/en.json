@@ -6,81 +6,78 @@
   },
   "home": {
     "eyebrow": "BIO • MED TRAINER",
-    "greeting": "Good morning, Amina",
-    "streakTitle": "{{count}} day streak",
-    "streakSubtitle": "Keep your rhythm going",
+    "greeting": "Welcome",
+    "streakTitle": "Study streak: {{count}}",
+    "streakSubtitle": "Complete a lesson to keep your streak",
     "today": "TODAY",
     "studyPlanLabel": "YOUR STUDY PLAN",
     "studyPlanHeadline1": "Small sessions.",
     "studyPlanHeadline2": "Real progress.",
-    "studyPlanDetail": "You've completed {{count}} of 24 recommended topics.",
+    "studyPlanDetail": "Lessons completed: {{count}} of {{total}}.",
     "continueTitle": "Continue learning",
     "viewCourse": "VIEW COURSE",
     "lessonKicker": "MOLECULAR BIOLOGY · 12 MIN",
     "lessonTitle": "DNA replication",
     "lessonSubtitle": "Leading & lagging strands",
     "exploreTitle": "Explore disciplines",
-    "total": "7 TOTAL"
+    "total": "7 TOTAL",
+    "comingSoon": "SOON"
   },
   "disciplines": {
-    "molecular": { "title": "Molecular biology", "subtitle": "DNA, RNA & gene expression" },
-    "genetics": { "title": "Medical genetics", "subtitle": "Inheritance & diagnosis" },
-    "biomedicine": { "title": "Biomedicine", "subtitle": "Cells, therapy & omics" },
-    "parasitology": { "title": "Parasitology", "subtitle": "Cycles, hosts & prevention" },
-    "embryology": { "title": "Embryology", "subtitle": "From gamete to organ" },
-    "ontogeny": { "title": "Ontogeny", "subtitle": "Growth, aging & repair" },
-    "invasion": { "title": "Human invasion", "subtitle": "Parasite–host interaction" }
+    "molecular": {
+      "title": "Molecular biology",
+      "subtitle": "DNA, RNA & gene expression"
+    },
+    "genetics": {
+      "title": "Medical genetics",
+      "subtitle": "Inheritance & diagnosis"
+    },
+    "biomedicine": {
+      "title": "Biomedicine",
+      "subtitle": "Cells, therapy & omics"
+    },
+    "parasitology": {
+      "title": "Parasitology",
+      "subtitle": "Cycles, hosts & prevention"
+    },
+    "embryology": {
+      "title": "Embryology",
+      "subtitle": "From gamete to organ"
+    },
+    "ontogeny": {
+      "title": "Ontogeny",
+      "subtitle": "Growth, aging & repair"
+    },
+    "invasion": {
+      "title": "Human invasion",
+      "subtitle": "Parasite–host interaction"
+    }
   },
   "review": {
     "kicker": "SMART REVIEW",
     "title": "Your review queue",
     "subtitle": "Short repetitions that make knowledge stick.",
-    "summaryTitle": "2 topics ready",
-    "summarySubtitle": "About 8 minutes to complete today",
+    "summaryTitle": "Review what you learned",
+    "summarySubtitle": "A few minutes a day helps it stick",
     "sectionTitle": "Recommended today",
-    "dnaDetail": "You missed 2 questions last time",
-    "geneDetail": "Due for a quick refresh",
+    "dnaDetail": "Test yourself once more",
     "tip": "Reviewing a little every day is more effective than one long study session."
   },
   "profile": {
     "kicker": "YOUR SPACE",
     "title": "Profile",
-    "studentName": "Amina Sadykova",
-    "studentMeta": "Medical student · Year 2",
+    "studentName": "My progress",
+    "studentMeta": "Data is stored only on this device",
     "overallProgress": "Overall progress",
     "topicsCompleted": "Topics completed",
-    "planKicker": "FREE PLAN",
-    "planTitle": "Unlock all 7 disciplines",
-    "planSubtitle": "Go deeper with unlimited practice and cases.",
     "preferences": "Preferences",
     "languageTitle": "Learning language",
     "languageSubtitle": "Choose your content language",
-    "savedTopics": "Saved topics",
-    "savedTopicsDetail": "Your personal collection",
-    "subscription": "Subscription",
-    "subscriptionDetail": "Manage your plan",
     "help": "Help & feedback",
-    "helpDetail": "We are here to help"
-  },
-  "subscription": {
-    "back": "Back to profile",
-    "kicker": "ACCESS PLANS",
-    "title": "Choose the right plan",
-    "subtitle": "Get access to interactive learning and BioMed Trainer practice tools",
-    "periodLabel": "BILLING PERIOD",
-    "periodMonthly": "1 month",
-    "periodSixMonths": "6 months",
-    "periodYearly": "1 year",
-    "pricePeriod": "per {{period}}",
-    "singleTitle": "One discipline",
-    "singleDescription": "Access to one selected discipline",
-    "allTitle": "All 7 disciplines",
-    "allDescription": "Full access to all seven BioMed Trainer disciplines",
-    "choosePlan": "Choose plan",
-    "selected": "Selected",
-    "selectionTitle": "Plan selected",
-    "selectionMessage": "{{plan}} · {{period}}",
-    "demoNote": "Payment is not connected yet. Selection currently works in demo mode."
+    "contactDetail": "Contact the developer",
+    "privacy": "Privacy policy",
+    "privacyDetail": "How the app handles data",
+    "disclaimer": "BioMed Trainer is a study app. Its content is for educational purposes only and is not medical advice, diagnosis or treatment. For health questions, consult a doctor."
   },
   "languages": {
     "en": "English",
@@ -98,12 +95,10 @@
     "theoryVisual": "Theory + visual",
     "practiceSet": "Practice set",
     "clinicalCase": "Clinical case",
-    "unlockTitle": "Open the full course",
-    "unlockSubtitle": "Get every topic, case and practice set.",
-    "pro": "PRO",
     "minutes": "{{count}} min",
-    "hours": "2.5 hrs",
-    "complete": "{{percent}}% complete"
+    "complete": "{{percent}}% complete",
+    "comingSoon": "Soon",
+    "totalTime": "≈ 1 hr"
   },
   "lesson": {
     "interactivePractice": "INTERACTIVE PRACTICE",

@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const topicMeta = [
   { duration: 12, typeKey: 'course.interactiveLesson', free: true },
-  { duration: 10, typeKey: 'course.theoryVisual', free: true },
+  { duration: 10, typeKey: 'course.theoryVisual', free: false },
   { duration: 14, typeKey: 'course.practiceSet', free: false },
   { duration: 16, typeKey: 'course.clinicalCase', free: false },
   { duration: 13, typeKey: 'course.interactiveLesson', free: false },
@@ -20,7 +20,7 @@ export default function CourseScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { language } = useStudy();
+  const { language, progressPercent } = useStudy();
   const { t } = useTranslation();
   const course = disciplines.find((item) => item.id === id) ?? disciplines[0];
   const courseNumber = disciplines.findIndex((item) => item.id === course.id) + 1;
@@ -33,7 +33,7 @@ export default function CourseScreen() {
         <Text style={styles.eyebrow}>{t('course.discipline', { number: String(courseNumber).padStart(2, '0') })}</Text>
         <Text style={styles.title}>{getLocalizedText(course.title, language)}</Text>
         <Text style={styles.description}>{getLocalizedText(course.description, language)}</Text>
-        <View style={styles.courseMeta}><Text style={styles.metaText}>{t('course.complete', { percent: 27 })}</Text><View style={styles.heroTrack}><View style={[styles.heroFill, { width: '27%' }]} /></View><Text style={styles.metaText}>{t('course.hours')}</Text></View>
+        <View style={styles.courseMeta}><Text style={styles.metaText}>{t('course.complete', { percent: progressPercent })}</Text><View style={styles.heroTrack}><View style={[styles.heroFill, { width: `${progressPercent}%` }]} /></View><Text style={styles.metaText}>{t('course.totalTime')}</Text></View>
       </View>
       <View style={styles.body}>
         <View style={styles.bodyHeading}><Text style={[styles.sectionTitle, { color: colors.foreground }]}>{t('course.courseTopics')}</Text><Text style={[styles.topicCount, { color: colors.mutedForeground }]}>{t('course.topicCount', { count: courseTopics.length })}</Text></View>
@@ -47,17 +47,12 @@ export default function CourseScreen() {
               onPress={() => router.push('/lesson/molecular-biology-dna')}
               style={({ pressed }) => [styles.topicRow, { backgroundColor: colors.card, borderColor: colors.border, opacity: pressed ? 0.82 : 1 }]}
             >
-              <View style={[styles.topicNumber, { backgroundColor: index === 0 ? colors.primary : colors.muted }]}>{meta.free ? <Text style={[styles.numberText, { color: index === 0 ? '#FFFFFF' : colors.mutedForeground }]}>{index + 1}</Text> : <Feather name="lock" size={13} color={colors.mutedForeground} />}</View>
+              <View style={[styles.topicNumber, { backgroundColor: index === 0 ? colors.primary : colors.muted }]}>{meta.free ? <Text style={[styles.numberText, { color: index === 0 ? '#FFFFFF' : colors.mutedForeground }]}>{index + 1}</Text> : <Feather name="clock" size={13} color={colors.mutedForeground} />}</View>
               <View style={{ flex: 1 }}><Text style={[styles.topicTitle, { color: colors.foreground }]}>{getLocalizedText(topic, language)}</Text><Text style={[styles.topicDetail, { color: colors.mutedForeground }]}>{t(meta.typeKey)} · {t('course.minutes', { count: meta.duration })}</Text></View>
-              {meta.free ? <Feather name="chevron-right" size={18} color={colors.primary} /> : <Text style={[styles.lockedLabel, { color: colors.mutedForeground }]}>{t('course.pro')}</Text>}
+              {meta.free ? <Feather name="chevron-right" size={18} color={colors.primary} /> : <Text style={[styles.lockedLabel, { color: colors.mutedForeground }]}>{t('course.comingSoon')}</Text>}
             </Pressable>
             );
           })}
-        </View>
-        <View style={[styles.unlockCard, { backgroundColor: colors.secondary }]}>
-          <View style={[styles.unlockIcon, { backgroundColor: colors.accent }]}><Feather name="unlock" size={16} color={colors.accentForeground} /></View>
-          <View style={{ flex: 1 }}><Text style={[styles.unlockTitle, { color: colors.foreground }]}>{t('course.unlockTitle')}</Text><Text style={[styles.unlockSub, { color: colors.mutedForeground }]}>{t('course.unlockSubtitle')}</Text></View>
-          <Feather name="arrow-right" size={18} color={colors.primary} />
         </View>
       </View>
     </ScrollView>
@@ -87,8 +82,4 @@ const styles = StyleSheet.create({
   topicTitle: { fontSize: 13, fontWeight: '700' },
   topicDetail: { fontSize: 10, marginTop: 4 },
   lockedLabel: { fontSize: 9, fontWeight: '800', letterSpacing: 0.7 },
-  unlockCard: { borderRadius: 18, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 11, marginTop: 22 },
-  unlockIcon: { width: 35, height: 35, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  unlockTitle: { fontSize: 13, fontWeight: '700' },
-  unlockSub: { fontSize: 10, marginTop: 3 },
 });

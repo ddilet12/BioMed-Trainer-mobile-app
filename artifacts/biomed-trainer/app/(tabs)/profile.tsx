@@ -1,12 +1,12 @@
 import { Feather } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import React from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Linking, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppLogo } from '@/components/AppLogo';
 import { useColors } from '@/hooks/useColors';
 import { Language, useStudy } from '@/context/StudyContext';
 import { useTranslation } from 'react-i18next';
+import { PRIVACY_POLICY_URL, SUPPORT_EMAIL } from '@/constants/app';
 
 const languages: { code: Language; labelKey: string }[] = [
   { code: 'en', labelKey: 'languages.shortEn' },
@@ -17,7 +17,7 @@ const languages: { code: Language; labelKey: string }[] = [
 export default function ProfileScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { language, setLanguage, completedLessons } = useStudy();
+  const { language, setLanguage, completedCount, progressPercent } = useStudy();
   const { t } = useTranslation();
   const topInset = insets.top + (Platform.OS === 'web' ? 67 : 0);
   return (
@@ -26,16 +26,11 @@ export default function ProfileScreen() {
       <View style={[styles.profileCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <AppLogo size={54} />
         <View style={{ flex: 1, marginLeft: 13 }}><Text style={[styles.name, { color: colors.foreground }]}>{t('profile.studentName')}</Text><Text style={[styles.email, { color: colors.mutedForeground }]}>{t('profile.studentMeta')}</Text></View>
-        <Pressable style={[styles.editButton, { backgroundColor: colors.secondary }]}><Feather name="edit-2" size={15} color={colors.primary} /></Pressable>
       </View>
       <View style={styles.statsRow}>
-        <View style={[styles.stat, { backgroundColor: colors.card, borderColor: colors.border }]}><Text style={[styles.statNumber, { color: colors.foreground }]}>27%</Text><Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{t('profile.overallProgress')}</Text></View>
-        <View style={[styles.stat, { backgroundColor: colors.card, borderColor: colors.border }]}><Text style={[styles.statNumber, { color: colors.foreground }]}>{completedLessons.length + 4}</Text><Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{t('profile.topicsCompleted')}</Text></View>
+        <View style={[styles.stat, { backgroundColor: colors.card, borderColor: colors.border }]}><Text style={[styles.statNumber, { color: colors.foreground }]}>{progressPercent}%</Text><Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{t('profile.overallProgress')}</Text></View>
+        <View style={[styles.stat, { backgroundColor: colors.card, borderColor: colors.border }]}><Text style={[styles.statNumber, { color: colors.foreground }]}>{completedCount}</Text><Text style={[styles.statLabel, { color: colors.mutedForeground }]}>{t('profile.topicsCompleted')}</Text></View>
       </View>
-      <Pressable onPress={() => router.push('/onboarding')} style={({ pressed }) => [styles.planCard, { backgroundColor: colors.primary, opacity: pressed ? 0.87 : 1 }]}>
-        <View style={{ flex: 1 }}><Text style={styles.planKicker}>{t('profile.planKicker')}</Text><Text style={styles.planTitle}>{t('profile.planTitle')}</Text><Text style={styles.planSub}>{t('profile.planSubtitle')}</Text></View>
-        <View style={styles.planArrow}><Feather name="arrow-up-right" size={19} color={colors.primary} /></View>
-      </Pressable>
       <Text style={[styles.sectionTitle, { color: colors.foreground }]}>{t('profile.preferences')}</Text>
       <View style={[styles.preferenceCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <View style={styles.preferenceHeading}><View style={[styles.preferenceIcon, { backgroundColor: colors.secondary }]}><Feather name="globe" size={17} color={colors.primary} /></View><View><Text style={[styles.preferenceTitle, { color: colors.foreground }]}>{t('profile.languageTitle')}</Text><Text style={[styles.preferenceSub, { color: colors.mutedForeground }]}>{t('profile.languageSubtitle')}</Text></View></View>
@@ -45,11 +40,11 @@ export default function ProfileScreen() {
       </View>
       <View style={[styles.menuCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
           {[
-          { icon: 'bookmark', titleKey: 'profile.savedTopics', detailKey: 'profile.savedTopicsDetail' },
-          { icon: 'credit-card', titleKey: 'profile.subscription', detailKey: 'profile.subscriptionDetail' },
-          { icon: 'help-circle', titleKey: 'profile.help', detailKey: 'profile.helpDetail' },
-        ].map((item, index) => <Pressable key={item.titleKey} onPress={item.titleKey === 'profile.subscription' ? () => router.push('/subscription') : undefined} accessibilityRole="button" style={[styles.menuRow, index < 2 && { borderBottomWidth: 1, borderBottomColor: colors.border }]}><View style={[styles.menuIcon, { backgroundColor: colors.muted }]}><Feather name={item.icon as keyof typeof Feather.glyphMap} size={16} color={colors.primary} /></View><View style={{ flex: 1 }}><Text style={[styles.menuTitle, { color: colors.foreground }]}>{t(item.titleKey)}</Text><Text style={[styles.menuSub, { color: colors.mutedForeground }]}>{t(item.detailKey)}</Text></View><Feather name="chevron-right" size={17} color={colors.mutedForeground} /></Pressable>)}
+          { icon: 'mail', titleKey: 'profile.help', detailKey: 'profile.contactDetail', url: `mailto:${SUPPORT_EMAIL}?subject=BioMed%20Trainer` },
+          { icon: 'shield', titleKey: 'profile.privacy', detailKey: 'profile.privacyDetail', url: PRIVACY_POLICY_URL },
+        ].map((item, index, list) => <Pressable key={item.titleKey} onPress={() => { Linking.openURL(item.url).catch(() => undefined); }} accessibilityRole="link" style={[styles.menuRow, index < list.length - 1 && { borderBottomWidth: 1, borderBottomColor: colors.border }]}><View style={[styles.menuIcon, { backgroundColor: colors.muted }]}><Feather name={item.icon as keyof typeof Feather.glyphMap} size={16} color={colors.primary} /></View><View style={{ flex: 1 }}><Text style={[styles.menuTitle, { color: colors.foreground }]}>{t(item.titleKey)}</Text><Text style={[styles.menuSub, { color: colors.mutedForeground }]}>{t(item.detailKey)}</Text></View><Feather name="chevron-right" size={17} color={colors.mutedForeground} /></Pressable>)}
       </View>
+      <Text style={[styles.disclaimer, { color: colors.mutedForeground }]}>{t('profile.disclaimer')}</Text>
     </ScrollView>
   );
 }
@@ -62,16 +57,11 @@ const styles = StyleSheet.create({
   profileCard: { marginHorizontal: 20, borderRadius: 20, borderWidth: 1, padding: 15, flexDirection: 'row', alignItems: 'center' },
   name: { fontSize: 16, fontWeight: '700' },
   email: { fontSize: 11, marginTop: 4 },
-  editButton: { width: 34, height: 34, borderRadius: 12, justifyContent: 'center', alignItems: 'center' },
-  statsRow: { flexDirection: 'row', gap: 10, marginHorizontal: 20, marginTop: 10 },
+  statsRow: { flexDirection: 'row', gap: 10, marginHorizontal: 20, marginTop: 10, marginBottom: 27 },
   stat: { flex: 1, borderRadius: 17, borderWidth: 1, padding: 15 },
   statNumber: { fontSize: 22, fontWeight: '700' },
   statLabel: { fontSize: 10, marginTop: 5 },
-  planCard: { marginHorizontal: 20, marginTop: 23, marginBottom: 27, borderRadius: 20, padding: 18, flexDirection: 'row', alignItems: 'center' },
-  planKicker: { color: '#C8EBD2', fontSize: 9, fontWeight: '800', letterSpacing: 1.3 },
-  planTitle: { color: '#FFFFFF', fontSize: 17, fontWeight: '700', marginTop: 7 },
-  planSub: { color: '#D8F1DF', fontSize: 11, marginTop: 5 },
-  planArrow: { width: 35, height: 35, borderRadius: 18, backgroundColor: '#DDF4E1', justifyContent: 'center', alignItems: 'center', marginLeft: 10 },
+  disclaimer: { marginHorizontal: 20, marginTop: 18, fontSize: 11, lineHeight: 16 },
   sectionTitle: { marginHorizontal: 20, fontSize: 18, fontWeight: '700', marginBottom: 12 },
   preferenceCard: { marginHorizontal: 20, borderRadius: 19, borderWidth: 1, padding: 15, marginBottom: 13 },
   preferenceHeading: { flexDirection: 'row', alignItems: 'center', gap: 11 },

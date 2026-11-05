@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppLogo } from '@/components/AppLogo';
 import { useColors } from '@/hooks/useColors';
 import { useStudy } from '@/context/StudyContext';
+import { AVAILABLE_DISCIPLINES } from '@/constants/app';
 import { disciplines, getLocalizedText } from '@/data/content';
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +14,7 @@ export default function HomeScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
-  const { streak, completedLessons, language } = useStudy();
+  const { streak, language, completedCount, totalLessons, progressPercent } = useStudy();
   const { t } = useTranslation();
   const topInset = insets.top + (Platform.OS === 'web' ? 67 : 0);
   const cardWidth = Math.min((width - 52) / 2, 210);
@@ -32,14 +33,6 @@ export default function HomeScreen() {
             <Text style={[styles.greeting, { color: colors.foreground }]}>{t('home.greeting')}</Text>
           </View>
         </View>
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => router.push('/profile')}
-          style={({ pressed }) => [styles.iconButton, { backgroundColor: colors.card, borderColor: colors.border, opacity: pressed ? 0.7 : 1 }]}
-        >
-          <Feather name="bell" size={18} color={colors.foreground} />
-          <View style={[styles.notificationDot, { backgroundColor: colors.primary }]} />
-        </Pressable>
       </View>
 
       <View style={[styles.streakRow, { backgroundColor: colors.secondary }]}>
@@ -57,11 +50,11 @@ export default function HomeScreen() {
         <View style={styles.progressCopy}>
           <Text style={styles.progressLabel}>{t('home.studyPlanLabel')}</Text>
           <Text style={styles.progressHeadline}>{t('home.studyPlanHeadline1')}{'\n'}{t('home.studyPlanHeadline2')}</Text>
-          <Text style={styles.progressDetail}>{t('home.studyPlanDetail', { count: completedLessons.length + 4 })}</Text>
-          <View style={styles.progressTrack}><View style={[styles.progressFill, { width: '27%' }]} /></View>
+          <Text style={styles.progressDetail}>{t('home.studyPlanDetail', { count: completedCount, total: totalLessons })}</Text>
+          <View style={styles.progressTrack}><View style={[styles.progressFill, { width: `${progressPercent}%` }]} /></View>
         </View>
         <View style={styles.progressCircle}>
-          <Text style={styles.progressNumber}>27</Text>
+          <Text style={styles.progressNumber}>{progressPercent}</Text>
           <Text style={styles.progressPercent}>%</Text>
         </View>
       </View>
@@ -83,7 +76,7 @@ export default function HomeScreen() {
           <Text style={[styles.lessonKicker, { color: colors.primary }]}>{t('home.lessonKicker')}</Text>
           <Text style={[styles.lessonTitle, { color: colors.foreground }]}>{t('home.lessonTitle')}</Text>
           <Text style={[styles.lessonSub, { color: colors.mutedForeground }]}>{t('home.lessonSubtitle')}</Text>
-          <View style={styles.lessonMeta}><View style={[styles.miniProgressTrack, { backgroundColor: colors.secondary }]}><View style={[styles.miniProgressFill, { backgroundColor: colors.primary, width: '65%' }]} /></View><Text style={[styles.lessonPercent, { color: colors.mutedForeground }]}>65%</Text></View>
+          <View style={styles.lessonMeta}><View style={[styles.miniProgressTrack, { backgroundColor: colors.secondary }]}><View style={[styles.miniProgressFill, { backgroundColor: colors.primary, width: `${progressPercent}%` }]} /></View><Text style={[styles.lessonPercent, { color: colors.mutedForeground }]}>{progressPercent}%</Text></View>
         </View>
         <View style={[styles.playButton, { backgroundColor: colors.foreground }]}><Feather name="play" size={14} color={colors.card} /></View>
       </Pressable>
@@ -93,23 +86,35 @@ export default function HomeScreen() {
         <Text style={[styles.countLabel, { color: colors.mutedForeground }]}>{t('home.total')}</Text>
       </View>
       <View style={styles.grid}>
-        {disciplines.map((discipline) => (
+        {disciplines.map((discipline) => {
+          const available = AVAILABLE_DISCIPLINES.includes(discipline.id);
+          const progress = available ? progressPercent : 0;
+          return (
           <Pressable
             key={discipline.id}
+            disabled={!available}
+            accessibilityState={{ disabled: !available }}
             onPress={() => router.push({ pathname: '/course/[id]', params: { id: discipline.id } })}
-            style={({ pressed }) => [styles.disciplineCard, { width: cardWidth, backgroundColor: colors.card, borderColor: colors.border, opacity: pressed ? 0.84 : 1 }]}
+            style={({ pressed }) => [styles.disciplineCard, { width: cardWidth, backgroundColor: colors.card, borderColor: colors.border, opacity: !available ? 0.6 : pressed ? 0.84 : 1 }]}
           >
-            <View style={[styles.disciplineIcon, { backgroundColor: discipline.progress ? colors.secondary : colors.muted }]}>
-              <Feather name={discipline.icon as keyof typeof Feather.glyphMap} size={18} color={discipline.progress ? colors.primary : colors.mutedForeground} />
+            <View style={[styles.disciplineIcon, { backgroundColor: available ? colors.secondary : colors.muted }]}>
+              <Feather name={discipline.icon as keyof typeof Feather.glyphMap} size={18} color={available ? colors.primary : colors.mutedForeground} />
             </View>
             <Text style={[styles.disciplineTitle, { color: colors.foreground }]} numberOfLines={2}>{getLocalizedText(discipline.title, language)}</Text>
             <Text style={[styles.disciplineSubtitle, { color: colors.mutedForeground }]} numberOfLines={2}>{getLocalizedText(discipline.subtitle, language)}</Text>
             <View style={styles.disciplineFooter}>
-              <View style={[styles.miniProgressTrack, { backgroundColor: colors.secondary }]}><View style={[styles.miniProgressFill, { backgroundColor: colors.primary, width: `${discipline.progress}%` }]} /></View>
-              <Text style={[styles.disciplinePercent, { color: colors.mutedForeground }]}>{discipline.progress}%</Text>
+              {available ? (
+                <>
+                  <View style={[styles.miniProgressTrack, { backgroundColor: colors.secondary }]}><View style={[styles.miniProgressFill, { backgroundColor: colors.primary, width: `${progress}%` }]} /></View>
+                  <Text style={[styles.disciplinePercent, { color: colors.mutedForeground }]}>{progress}%</Text>
+                </>
+              ) : (
+                <Text style={[styles.comingSoon, { color: colors.mutedForeground }]}>{t('home.comingSoon')}</Text>
+              )}
             </View>
           </Pressable>
-        ))}
+          );
+        })}
       </View>
     </ScrollView>
   );
@@ -122,8 +127,6 @@ const styles = StyleSheet.create({
   headerIdentity: { flexDirection: 'row', alignItems: 'center', gap: 11 },
   eyebrow: { fontSize: 10, fontWeight: '700', letterSpacing: 1.3, marginBottom: 4 },
   greeting: { fontSize: 18, fontWeight: '700', letterSpacing: -0.3 },
-  iconButton: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  notificationDot: { position: 'absolute', top: 9, right: 10, width: 6, height: 6, borderRadius: 3, borderWidth: 1, borderColor: '#FFFFFF' },
   streakRow: { flexDirection: 'row', alignItems: 'center', padding: 12, borderRadius: 16, marginBottom: 14 },
   streakIcon: { width: 34, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   streakCopy: { flex: 1, marginLeft: 10 },
@@ -165,4 +168,5 @@ const styles = StyleSheet.create({
   disciplineSubtitle: { fontSize: 10.5, lineHeight: 15, marginTop: 4, minHeight: 30 },
   disciplineFooter: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 'auto' },
   disciplinePercent: { fontSize: 10, fontWeight: '600' },
+  comingSoon: { fontSize: 10, fontWeight: '800', letterSpacing: 1 },
 });

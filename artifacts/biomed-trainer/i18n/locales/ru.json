@@ -6,81 +6,78 @@
   },
   "home": {
     "eyebrow": "BIO • MED TRAINER",
-    "greeting": "Доброе утро, Амина",
-    "streakTitle": "{{count}} дней подряд",
-    "streakSubtitle": "Продолжайте в своём ритме",
+    "greeting": "Добро пожаловать",
+    "streakTitle": "Серия занятий: {{count}} дн.",
+    "streakSubtitle": "Пройдите урок, чтобы продолжить серию",
     "today": "СЕГОДНЯ",
     "studyPlanLabel": "ВАШ УЧЕБНЫЙ ПЛАН",
     "studyPlanHeadline1": "Небольшие сессии.",
     "studyPlanHeadline2": "Заметный прогресс.",
-    "studyPlanDetail": "Вы завершили {{count}} из 24 рекомендованных тем.",
+    "studyPlanDetail": "Завершено уроков: {{count}} из {{total}}.",
     "continueTitle": "Продолжить обучение",
     "viewCourse": "К КУРСУ",
     "lessonKicker": "МОЛЕКУЛЯРНАЯ БИОЛОГИЯ · 12 МИН",
     "lessonTitle": "Репликация ДНК",
     "lessonSubtitle": "Ведущая и отстающая цепи",
     "exploreTitle": "Все дисциплины",
-    "total": "ВСЕГО 7"
+    "total": "ВСЕГО 7",
+    "comingSoon": "СКОРО"
   },
   "disciplines": {
-    "molecular": { "title": "Молекулярная биология", "subtitle": "ДНК, РНК и экспрессия генов" },
-    "genetics": { "title": "Медицинская генетика", "subtitle": "Наследование и диагностика" },
-    "biomedicine": { "title": "Биомедицина", "subtitle": "Клетки, терапия и omics" },
-    "parasitology": { "title": "Паразитология", "subtitle": "Циклы, хозяева и профилактика" },
-    "embryology": { "title": "Эмбриология", "subtitle": "От гаметы до органа" },
-    "ontogeny": { "title": "Онтогенез", "subtitle": "Рост, старение и регенерация" },
-    "invasion": { "title": "Инвазия человека", "subtitle": "Взаимодействие паразита и хозяина" }
+    "molecular": {
+      "title": "Молекулярная биология",
+      "subtitle": "ДНК, РНК и экспрессия генов"
+    },
+    "genetics": {
+      "title": "Медицинская генетика",
+      "subtitle": "Наследование и диагностика"
+    },
+    "biomedicine": {
+      "title": "Биомедицина",
+      "subtitle": "Клетки, терапия и omics"
+    },
+    "parasitology": {
+      "title": "Паразитология",
+      "subtitle": "Циклы, хозяева и профилактика"
+    },
+    "embryology": {
+      "title": "Эмбриология",
+      "subtitle": "От гаметы до органа"
+    },
+    "ontogeny": {
+      "title": "Онтогенез",
+      "subtitle": "Рост, старение и регенерация"
+    },
+    "invasion": {
+      "title": "Инвазия человека",
+      "subtitle": "Взаимодействие паразита и хозяина"
+    }
   },
   "review": {
     "kicker": "УМНОЕ ПОВТОРЕНИЕ",
     "title": "Очередь повторения",
     "subtitle": "Короткие повторы, которые помогают запоминать.",
-    "summaryTitle": "2 темы готовы",
-    "summarySubtitle": "Около 8 минут на сегодня",
+    "summaryTitle": "Повторите пройденное",
+    "summarySubtitle": "Несколько минут в день помогают запомнить",
     "sectionTitle": "Рекомендуем сегодня",
-    "dnaDetail": "В прошлый раз допущено 2 ошибки",
-    "geneDetail": "Пора быстро освежить знания",
+    "dnaDetail": "Проверьте себя ещё раз",
     "tip": "Небольшое повторение каждый день эффективнее одной длинной учебной сессии."
   },
   "profile": {
     "kicker": "ВАШЕ ПРОСТРАНСТВО",
     "title": "Профиль",
-    "studentName": "Амина Садыкова",
-    "studentMeta": "Студентка-медик · 2 курс",
+    "studentName": "Мой прогресс",
+    "studentMeta": "Данные хранятся только на этом устройстве",
     "overallProgress": "Общий прогресс",
     "topicsCompleted": "Тем завершено",
-    "planKicker": "БЕСПЛАТНЫЙ ПЛАН",
-    "planTitle": "Откройте все 7 дисциплин",
-    "planSubtitle": "Больше практики и клинических кейсов без ограничений.",
     "preferences": "Настройки",
     "languageTitle": "Язык обучения",
     "languageSubtitle": "Выберите язык учебного контента",
-    "savedTopics": "Сохранённые темы",
-    "savedTopicsDetail": "Ваша личная коллекция",
-    "subscription": "Подписка",
-    "subscriptionDetail": "Управление тарифом",
     "help": "Помощь и обратная связь",
-    "helpDetail": "Мы готовы помочь"
-  },
-  "subscription": {
-    "back": "Вернуться в профиль",
-    "kicker": "ТАРИФЫ ДОСТУПА",
-    "title": "Выберите подходящий план",
-    "subtitle": "Получите доступ к интерактивному обучению и тренажёрам BioMed Trainer",
-    "periodLabel": "ПЕРИОД ОПЛАТЫ",
-    "periodMonthly": "1 месяц",
-    "periodSixMonths": "6 месяцев",
-    "periodYearly": "1 год",
-    "pricePeriod": "за {{period}}",
-    "singleTitle": "Одна дисциплина",
-    "singleDescription": "Доступ только к выбранной дисциплине",
-    "allTitle": "Все 7 дисциплин",
-    "allDescription": "Полный доступ ко всем семи направлениям BioMed Trainer",
-    "choosePlan": "Выбрать план",
-    "selected": "Выбрано",
-    "selectionTitle": "План выбран",
-    "selectionMessage": "{{plan}} · {{period}}",
-    "demoNote": "Оплата пока не подключена. Выбор работает в демонстрационном режиме."
+    "contactDetail": "Написать разработчику",
+    "privacy": "Политика конфиденциальности",
+    "privacyDetail": "Как приложение обращается с данными",
+    "disclaimer": "BioMed Trainer — учебное приложение. Материалы носят образовательный характер и не являются медицинской консультацией, диагнозом или рекомендацией по лечению. По вопросам здоровья обращайтесь к врачу."
   },
   "languages": {
     "en": "English",
@@ -98,12 +95,10 @@
     "theoryVisual": "Теория и визуализация",
     "practiceSet": "Практический блок",
     "clinicalCase": "Клинический кейс",
-    "unlockTitle": "Откройте полный курс",
-    "unlockSubtitle": "Все темы, кейсы и практические задания.",
-    "pro": "PRO",
     "minutes": "{{count}} мин",
-    "hours": "2,5 ч",
-    "complete": "{{percent}}% пройдено"
+    "complete": "{{percent}}% пройдено",
+    "comingSoon": "Скоро",
+    "totalTime": "≈ 1 ч"
   },
   "lesson": {
     "interactivePractice": "ИНТЕРАКТИВНАЯ ПРАКТИКА",
