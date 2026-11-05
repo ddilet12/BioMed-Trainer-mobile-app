@@ -2,6 +2,7 @@
   "expo": {
     "name": "BioMed Trainer",
     "slug": "biomed-trainer",
+    "owner": "dilet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -30,10 +31,17 @@
     "web": {
       "favicon": "./assets/images/icon.png"
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router"
+    ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2f3be84c-137b-4e46-95c4-9dd5483fa166"
+      }
     }
   }
 }
