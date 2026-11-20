@@ -29,6 +29,12 @@ function NativeTabLayout() {
         />
         <NativeTabs.Trigger.Label>{t('tabs.review')}</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="glossary">
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'book', selected: 'book.fill' }}
+        />
+        <NativeTabs.Trigger.Label>{t('tabs.glossary')}</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="profile">
         <NativeTabs.Trigger.Icon
           sf={{ default: 'person.crop.circle', selected: 'person.crop.circle.fill' }}
@@ -100,6 +106,18 @@ function ClassicTabLayout() {
               <SymbolView name="arrow.triangle.2.circlepath" tintColor={color} size={23} />
             ) : (
               <Feather name="refresh-cw" size={21} color={color} />
+            ),
+        }}
+      />
+      <Tabs.Screen
+        name="glossary"
+        options={{
+          title: t('tabs.glossary'),
+          tabBarIcon: ({ color }) =>
+            isIOS ? (
+              <SymbolView name="book" tintColor={color} size={23} />
+            ) : (
+              <Feather name="book-open" size={21} color={color} />
             ),
         }}
       />

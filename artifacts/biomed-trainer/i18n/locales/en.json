@@ -2,7 +2,8 @@
   "tabs": {
     "home": "Home",
     "review": "Review",
-    "profile": "Profile"
+    "profile": "Profile",
+    "glossary": "Glossary"
   },
   "home": {
     "eyebrow": "BIO • MED TRAINER",
@@ -20,8 +21,9 @@
     "lessonTitle": "DNA replication",
     "lessonSubtitle": "Leading & lagging strands",
     "exploreTitle": "Explore disciplines",
-    "total": "7 TOTAL",
-    "comingSoon": "SOON"
+    "total": "{{count}} TOTAL",
+    "comingSoon": "SOON",
+    "topics": "{{count}} TOPICS"
   },
   "disciplines": {
     "molecular": {
@@ -37,20 +39,8 @@
       "subtitle": "Cells, therapy & omics"
     },
     "parasitology": {
-      "title": "Parasitology",
-      "subtitle": "Cycles, hosts & prevention"
-    },
-    "embryology": {
-      "title": "Embryology",
-      "subtitle": "From gamete to organ"
-    },
-    "ontogeny": {
-      "title": "Ontogeny",
-      "subtitle": "Growth, aging & repair"
-    },
-    "invasion": {
-      "title": "Human invasion",
-      "subtitle": "Parasite–host interaction"
+      "title": "Medical biology & parasitology",
+      "subtitle": "Development, parasites & host"
     }
   },
   "review": {
@@ -62,6 +52,15 @@
     "sectionTitle": "Recommended today",
     "dnaDetail": "Test yourself once more",
     "tip": "Reviewing a little every day is more effective than one long study session."
+  },
+  "glossary": {
+    "kicker": "TERM REFERENCE",
+    "title": "Glossary",
+    "subtitle": "Key terms across all disciplines — {{count}} definitions.",
+    "searchPlaceholder": "Search a term",
+    "clear": "Clear search",
+    "all": "All",
+    "empty": "Nothing found. Try another search or discipline."
   },
   "profile": {
     "kicker": "YOUR SPACE",
@@ -101,19 +100,36 @@
     "totalTime": "≈ 1 hr"
   },
   "lesson": {
-    "interactivePractice": "INTERACTIVE PRACTICE",
     "heading": "The replication fork",
     "intro": "Build a clear mental model of how DNA copies itself before cell division.",
     "visualLabel": "DNA REPLICATION",
     "visualBadge": "VISUAL",
-    "leadingStrand": "Leading strand",
-    "newStrand": "New strand",
     "checkUnderstanding": "CHECK YOUR UNDERSTANDING",
     "checkAnswer": "Check answer",
     "nextQuestion": "Next question",
     "backToCourse": "Back to course",
     "correct": "Correct.",
-    "notQuite": "Not quite."
+    "notQuite": "Not quite.",
+    "phase": {
+      "theory": "Theory",
+      "scheme": "Diagram",
+      "quiz": "Task",
+      "result": "Result"
+    },
+    "theoryKicker": "STEP 1 · THEORY",
+    "toScheme": "To the diagram",
+    "schemeKicker": "STEP 2 · VISUAL DIAGRAM",
+    "schemeTitle": "Inside the fork",
+    "schemeIntro": "Match the colours in the diagram to the players in replication.",
+    "schemeNote": "Arrows show the direction of synthesis: the leading strand grows continuously toward the fork, Okazaki fragments grow away from it in short pieces.",
+    "toTask": "To the task",
+    "backToTheory": "Back to theory",
+    "showResult": "See result",
+    "resultTitle": "Lesson complete",
+    "resultScore": "Correct answers: {{correct}} of {{total}}",
+    "resultPerfect": "Excellent! You have a solid grasp of DNA replication.",
+    "resultKeepGoing": "Good start. Re-read the theory and diagram, then try again.",
+    "repeat": "Take the lesson again"
   },
   "onboarding": {
     "skip": "SKIP",

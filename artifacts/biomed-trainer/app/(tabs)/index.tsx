@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppLogo } from '@/components/AppLogo';
 import { useColors } from '@/hooks/useColors';
@@ -13,11 +13,9 @@ import { useTranslation } from 'react-i18next';
 export default function HomeScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
   const { streak, language, completedCount, totalLessons, progressPercent } = useStudy();
   const { t } = useTranslation();
   const topInset = insets.top + (Platform.OS === 'web' ? 67 : 0);
-  const cardWidth = Math.min((width - 52) / 2, 210);
 
   return (
     <ScrollView
@@ -83,26 +81,31 @@ export default function HomeScreen() {
 
       <View style={styles.sectionHeader}>
         <Text style={[styles.sectionTitle, { color: colors.foreground }]}>{t('home.exploreTitle')}</Text>
-        <Text style={[styles.countLabel, { color: colors.mutedForeground }]}>{t('home.total')}</Text>
+        <Text style={[styles.countLabel, { color: colors.mutedForeground }]}>{t('home.total', { count: disciplines.length })}</Text>
       </View>
-      <View style={styles.grid}>
+      <View style={styles.catalog}>
         {disciplines.map((discipline) => {
           const available = AVAILABLE_DISCIPLINES.includes(discipline.id);
           const progress = available ? progressPercent : 0;
           return (
           <Pressable
             key={discipline.id}
-            disabled={!available}
-            accessibilityState={{ disabled: !available }}
             onPress={() => router.push({ pathname: '/course/[id]', params: { id: discipline.id } })}
-            style={({ pressed }) => [styles.disciplineCard, { width: cardWidth, backgroundColor: colors.card, borderColor: colors.border, opacity: !available ? 0.6 : pressed ? 0.84 : 1 }]}
+            style={({ pressed }) => [styles.disciplineCard, { backgroundColor: colors.card, borderColor: colors.border, opacity: pressed ? 0.84 : 1 }]}
           >
-            <View style={[styles.disciplineIcon, { backgroundColor: available ? colors.secondary : colors.muted }]}>
-              <Feather name={discipline.icon as keyof typeof Feather.glyphMap} size={18} color={available ? colors.primary : colors.mutedForeground} />
+            <View style={styles.disciplineTop}>
+              <View style={[styles.disciplineIcon, { backgroundColor: available ? colors.secondary : colors.muted }]}>
+                <Feather name={discipline.icon as keyof typeof Feather.glyphMap} size={18} color={available ? colors.primary : colors.mutedForeground} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={[styles.disciplineTitle, { color: colors.foreground }]}>{getLocalizedText(discipline.title, language)}</Text>
+                <Text style={[styles.disciplineSubtitle, { color: colors.mutedForeground }]}>{getLocalizedText(discipline.subtitle, language)}</Text>
+              </View>
+              <Feather name="chevron-right" size={18} color={colors.mutedForeground} />
             </View>
-            <Text style={[styles.disciplineTitle, { color: colors.foreground }]} numberOfLines={2}>{getLocalizedText(discipline.title, language)}</Text>
-            <Text style={[styles.disciplineSubtitle, { color: colors.mutedForeground }]} numberOfLines={2}>{getLocalizedText(discipline.subtitle, language)}</Text>
+            <Text style={[styles.disciplineDescription, { color: colors.mutedForeground }]}>{getLocalizedText(discipline.description, language)}</Text>
             <View style={styles.disciplineFooter}>
+              <Text style={[styles.topicsLabel, { color: colors.mutedForeground }]}>{t('home.topics', { count: discipline.topics.length })}</Text>
               {available ? (
                 <>
                   <View style={[styles.miniProgressTrack, { backgroundColor: colors.secondary }]}><View style={[styles.miniProgressFill, { backgroundColor: colors.primary, width: `${progress}%` }]} /></View>
@@ -161,12 +164,15 @@ const styles = StyleSheet.create({
   miniProgressFill: { height: 4, borderRadius: 2 },
   lessonPercent: { fontSize: 10, fontWeight: '600' },
   playButton: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
-  disciplineCard: { minHeight: 163, borderRadius: 19, borderWidth: 1, padding: 14 },
-  disciplineIcon: { width: 34, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
-  disciplineTitle: { fontSize: 14, fontWeight: '700', lineHeight: 18 },
-  disciplineSubtitle: { fontSize: 10.5, lineHeight: 15, marginTop: 4, minHeight: 30 },
-  disciplineFooter: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 'auto' },
+  catalog: { gap: 12 },
+  disciplineCard: { borderRadius: 19, borderWidth: 1, padding: 14 },
+  disciplineTop: { flexDirection: 'row', alignItems: 'center', gap: 11 },
+  disciplineIcon: { width: 38, height: 38, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  disciplineTitle: { fontSize: 15, fontWeight: '700', lineHeight: 19 },
+  disciplineSubtitle: { fontSize: 11, lineHeight: 15, marginTop: 2 },
+  disciplineDescription: { fontSize: 12, lineHeight: 17, marginTop: 11 },
+  disciplineFooter: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 12 },
+  topicsLabel: { flex: 1, fontSize: 10, fontWeight: '800', letterSpacing: 0.8 },
   disciplinePercent: { fontSize: 10, fontWeight: '600' },
   comingSoon: { fontSize: 10, fontWeight: '800', letterSpacing: 1 },
 });

@@ -4,7 +4,8 @@ import React from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
-import { disciplines, courseTopics, getLocalizedText } from '@/data/content';
+import { disciplines, getLocalizedText } from '@/data/content';
+import { AVAILABLE_DISCIPLINES } from '@/constants/app';
 import { useStudy } from '@/context/StudyContext';
 import { useTranslation } from 'react-i18next';
 
@@ -24,6 +25,9 @@ export default function CourseScreen() {
   const { t } = useTranslation();
   const course = disciplines.find((item) => item.id === id) ?? disciplines[0];
   const courseNumber = disciplines.findIndex((item) => item.id === course.id) + 1;
+  const available = AVAILABLE_DISCIPLINES.includes(course.id);
+  const percent = available ? progressPercent : 0;
+  const courseTopics = course.topics;
   const topInset = insets.top + (Platform.OS === 'web' ? 67 : 0);
   return (
     <ScrollView style={[styles.screen, { backgroundColor: colors.background }]} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }} showsVerticalScrollIndicator={false}>
@@ -33,23 +37,24 @@ export default function CourseScreen() {
         <Text style={styles.eyebrow}>{t('course.discipline', { number: String(courseNumber).padStart(2, '0') })}</Text>
         <Text style={styles.title}>{getLocalizedText(course.title, language)}</Text>
         <Text style={styles.description}>{getLocalizedText(course.description, language)}</Text>
-        <View style={styles.courseMeta}><Text style={styles.metaText}>{t('course.complete', { percent: progressPercent })}</Text><View style={styles.heroTrack}><View style={[styles.heroFill, { width: `${progressPercent}%` }]} /></View><Text style={styles.metaText}>{t('course.totalTime')}</Text></View>
+        <View style={styles.courseMeta}><Text style={styles.metaText}>{t('course.complete', { percent })}</Text><View style={styles.heroTrack}><View style={[styles.heroFill, { width: `${percent}%` }]} /></View><Text style={styles.metaText}>{t('course.totalTime')}</Text></View>
       </View>
       <View style={styles.body}>
         <View style={styles.bodyHeading}><Text style={[styles.sectionTitle, { color: colors.foreground }]}>{t('course.courseTopics')}</Text><Text style={[styles.topicCount, { color: colors.mutedForeground }]}>{t('course.topicCount', { count: courseTopics.length })}</Text></View>
         <View style={styles.topicList}>
           {courseTopics.map((topic, index) => {
-            const meta = topicMeta[index];
+            const meta = topicMeta[index % topicMeta.length];
+            const free = available && meta.free;
             return (
             <Pressable
-              key={topic.ru}
-              disabled={!meta.free}
+              key={topic.en}
+              disabled={!free}
               onPress={() => router.push('/lesson/molecular-biology-dna')}
               style={({ pressed }) => [styles.topicRow, { backgroundColor: colors.card, borderColor: colors.border, opacity: pressed ? 0.82 : 1 }]}
             >
-              <View style={[styles.topicNumber, { backgroundColor: index === 0 ? colors.primary : colors.muted }]}>{meta.free ? <Text style={[styles.numberText, { color: index === 0 ? '#FFFFFF' : colors.mutedForeground }]}>{index + 1}</Text> : <Feather name="clock" size={13} color={colors.mutedForeground} />}</View>
+              <View style={[styles.topicNumber, { backgroundColor: free ? colors.primary : colors.muted }]}>{free ? <Text style={[styles.numberText, { color: free ? '#FFFFFF' : colors.mutedForeground }]}>{index + 1}</Text> : <Feather name="clock" size={13} color={colors.mutedForeground} />}</View>
               <View style={{ flex: 1 }}><Text style={[styles.topicTitle, { color: colors.foreground }]}>{getLocalizedText(topic, language)}</Text><Text style={[styles.topicDetail, { color: colors.mutedForeground }]}>{t(meta.typeKey)} · {t('course.minutes', { count: meta.duration })}</Text></View>
-              {meta.free ? <Feather name="chevron-right" size={18} color={colors.primary} /> : <Text style={[styles.lockedLabel, { color: colors.mutedForeground }]}>{t('course.comingSoon')}</Text>}
+              {free ? <Feather name="chevron-right" size={18} color={colors.primary} /> : <Text style={[styles.lockedLabel, { color: colors.mutedForeground }]}>{t('course.comingSoon')}</Text>}
             </Pressable>
             );
           })}
