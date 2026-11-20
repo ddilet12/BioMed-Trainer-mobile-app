@@ -30,6 +30,7 @@
     "expo-haptics": "~57.0.1",
     "expo-image": "~57.0.1",
     "expo-image-picker": "~57.0.5",
+    "expo-in-app-updates": "0.12.0",
     "expo-linear-gradient": "~57.0.1",
     "expo-linking": "~57.0.3",
     "expo-location": "~57.0.5",

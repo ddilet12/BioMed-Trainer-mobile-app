@@ -156,5 +156,13 @@
     "closeDetails": "Close error details",
     "errorLabel": "Error",
     "stackTrace": "Stack Trace"
+  },
+  "update": {
+    "title": "New version available",
+    "body": "Update the app to get new lessons and fixes.",
+    "action": "Update",
+    "later": "Later",
+    "downloadingTitle": "Downloading update",
+    "downloadingBody": "The app will restart when it is ready."
   }
 }
