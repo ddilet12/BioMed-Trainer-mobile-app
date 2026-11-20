@@ -13,7 +13,7 @@
     },
     "android": {
       "package": "kz.biomedtrainer.app",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FDF8F2"
